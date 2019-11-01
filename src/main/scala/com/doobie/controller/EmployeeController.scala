@@ -42,10 +42,10 @@ object EmployeeController extends EmployeeDAO with  MysqlConnection{
     result
   }
 
-//  def groupEmployeesByAddress: Unit ={
-//    val result = groupByAddress.quick.unsafeRunSync
-//    result
-//  }
+  def groupEmployeesByAddress: Unit ={
+    val result = groupByAddress.quick.unsafeRunSync
+    result
+  }
 
 //  def sortEmployeeBySalary: Future[List[Employee]] ={
 //    val result = sortBySalary

@@ -17,19 +17,19 @@ import cats.implicits._
 object Main extends App with MysqlConnection{
 
   import com.doobie.controller.EmployeeController.{ insertOneEmployee1, insertOneEmployee2, insertManyEmployees, viewAllEmployees,
-                                                    updateEmployeeViaId, deleteEmployeeViaId}
+                                                    updateEmployeeViaId, deleteEmployeeViaId, groupEmployeesByAddress}
 
 //  insertOneEmployee1(Employee(22,"MMM","Galle",86.3))
 //
 //  insertManyEmployees(List(Employee(32,"MMM","Galle",86.3), Employee(33,"MMM","Galle",86.3), Employee(34,"MMM","Galle",86.3)))
 //
-  viewAllEmployees
+//  viewAllEmployees
 
 //  updateEmployeeViaId(32, Employee(22,"NNN","Nuwara-Eliya",65.2))
 
 //  deleteEmployeeViaId(34)
 
-//  groupEmployeesByAddress
+  groupEmployeesByAddress
 
 
 

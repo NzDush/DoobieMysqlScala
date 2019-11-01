@@ -49,13 +49,13 @@ trait EmployeeDAO //extends AbstractDAO[Employee]
          |""".stripMargin.update
   }
 
-//  def groupByAddress: doobie.Query0[List[(String, Long)]] ={
-//    sql"""
-//         |SELECT address, COUNT(employee_id)
-//         |FROM Employee
-//         |GROUP BY Address
-//         |""".stripMargin.query[List[(String, Long)]]
-//  }
+  def groupByAddress: doobie.Query0[(String, Long)] ={
+    sql"""
+         |SELECT address, COUNT(employee_id)
+         |FROM Employee
+         |GROUP BY Address
+         |""".stripMargin.query[(String, Long)]
+  }
 
 //  def sortBySalary: Future[List[Employee]] ={
 //
