@@ -13,7 +13,7 @@ trait AssetDAO extends //AbstractDAO[Asset] with
          |SELECT *
          |FROM Employee
          |INNER JOIN Asset
-            |ON Employee.employee_id = Asset.employee_id
+         |  ON Employee.employee_id = Asset.employee_id
          |WHERE Employee.salary > 50.0
          |""".stripMargin.query[(Employee, Asset)]
   }

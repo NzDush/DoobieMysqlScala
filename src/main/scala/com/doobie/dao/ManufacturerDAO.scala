@@ -13,9 +13,9 @@ trait ManufacturerDAO extends //AbstractDAO[Manufacturer] with
          |SELECT *
          |FROM Employee
          |INNER JOIN Asset
-            |ON Employee.employee_id = Asset.employee_id
+         |  ON Employee.employee_id = Asset.employee_id
          |INNER JOIN Manufacturer
-            |ON Asset.manufacturer_id = Manufacturer.manufacturer_id
+         |  ON Asset.manufacturer_id = Manufacturer.manufacturer_id
          |""".stripMargin.query[(Employee, Asset, Manufacturer)]
   }
 
