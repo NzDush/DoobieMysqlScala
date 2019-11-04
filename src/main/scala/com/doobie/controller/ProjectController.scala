@@ -1,14 +1,14 @@
-//package com.doobie.controller
-//
-//import com.doobie.dao.ProjectDAO
-//import com.doobie.models.{Employee, EmployeeProjects, Project}
-//import scala.concurrent.Future
-//
-//object ProjectController extends ProjectDAO{
-//
-//  def employeeWithProjects: Future[List[((Employee, EmployeeProjects), Project)]] ={
-//    val result = employeeProjects
-//    result
-//  }
-//
-//}
+package com.doobie.controller
+
+import com.doobie.connection.MysqlConnection
+import com.doobie.dao.ProjectDAO
+
+object ProjectController extends  ProjectDAO with
+                                  MysqlConnection {
+  import y._
+
+  def employeeWithProjects: Unit ={
+    val result = employeeProjects.quick.unsafeRunSync
+  }
+
+}

@@ -1,19 +1,18 @@
-//package com.doobie.controller
-//
-//import com.doobie.dao.ManufacturerDAO
-//import com.doobie.models.{Asset, Employee, EmployeeProjects, Manufacturer, Project}
-//import scala.concurrent.Future
-//
-//object ManufacturerController extends ManufacturerDAO{
-//
-//  def connectionBetweenEmployeeAssetManufacturer: Future[List[((Employee, Asset), Manufacturer)]] ={
-//    val result = employeeAssetManufacturer
-//    result
-//  }
-//
-//  def connectionBetweenProjectEmployeeAssetManufacturer: Future[List[((((Project, EmployeeProjects), Employee), Asset), Manufacturer)]] ={
-//    val result = projectEmployeeAssetManufacturer
-//    result
-//  }
-//
-//}
+package com.doobie.controller
+
+import com.doobie.connection.MysqlConnection
+import com.doobie.dao.ManufacturerDAO
+
+object ManufacturerController extends ManufacturerDAO with
+                                      MysqlConnection{
+  import y._
+
+  def connectionBetweenEmployeeAssetManufacturer: Unit ={
+    val result = employeeAssetManufacturer.quick.unsafeRunSync
+  }
+
+  def connectionBetweenProjectEmployeeAssetManufacturer: Unit ={
+    val result = projectEmployeeAssetManufacturer.quick.unsafeRunSync
+  }
+
+}

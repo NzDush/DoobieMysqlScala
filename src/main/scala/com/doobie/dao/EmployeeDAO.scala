@@ -2,16 +2,18 @@ package com.doobie.dao
 
 import doobie._
 import doobie.implicits._
-import doobie.util.ExecutionContexts
-import cats._
-import cats.data._
+//import doobie.util.ExecutionContexts
+//import cats._
+//import cats.data._
 import cats.effect._
 import cats.implicits._
 import com.doobie.models.Employee
-import scala.concurrent.Future
+//import scala.concurrent.Future
+import com.doobie.connection.MysqlConnection
 
-trait EmployeeDAO //extends AbstractDAO[Employee]
-          {
+trait EmployeeDAO extends //AbstractDAO[Employee] with
+                          MysqlConnection {
+  import y._
 
   def insertOne(employee: Employee): doobie.Update0 ={
     sql"""
@@ -57,8 +59,28 @@ trait EmployeeDAO //extends AbstractDAO[Employee]
          |""".stripMargin.query[(String, Long)]
   }
 
-//  def sortBySalary: Future[List[Employee]] ={
-//
-//  }
+  def sortBySalary: doobie.Query0[Employee] ={
+    sql"""
+         |SELECT *
+         |FROM Employee
+         |ORDER BY salary
+         |""".stripMargin.query[Employee]
+  }
+
+  def sortBySalaryWithMapping: IO[Vector[Employee]] ={
+    val sortQuery: fs2.Stream[IO, Employee] = {
+      sql"""
+           |SELECT *
+           |FROM Employee
+           |ORDER BY salary
+           |""".stripMargin
+        .query[Employee]
+        .stream
+        .transact(xa)
+    }
+
+    val result = sortQuery.compile.toVector
+    result
+  }
 
 }

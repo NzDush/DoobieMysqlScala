@@ -1,14 +1,14 @@
-//package com.doobie.controller
-//
-//import com.doobie.dao.AssetDAO
-//import com.doobie.models.{Asset, Employee}
-//import scala.concurrent.Future
-//
-//object AssetController extends AssetDAO{
-//
-//  def employeeAssetsWithFilterSalary(lowerSalaryLimit: Double): Future[List[(Employee, Asset)]] ={
-//    val result = employeeAssetFilterSalary(lowerSalaryLimit)
-//    result
-//  }
-//
-//}
+package com.doobie.controller
+
+import com.doobie.connection.MysqlConnection
+import com.doobie.dao.AssetDAO
+
+object AssetController extends  AssetDAO with
+                                MysqlConnection{
+  import y._
+
+  def employeeAssetsWithFilterSalary(lowerSalaryLimit: Double): Unit ={
+    val result = employeeAssetFilterSalary(lowerSalaryLimit).quick.unsafeRunSync
+  }
+
+}
