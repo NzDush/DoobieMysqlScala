@@ -5,6 +5,8 @@ import doobie.implicits._
 import cats.effect.{Blocker, IO}
 import doobie.Transactor
 import doobie.util.ExecutionContexts
+import io.getquill.{ idiom => _, _ }
+import doobie.quill.DoobieContext
 
 trait MysqlConnection {
 //  val program1 = 42.pure[ConnectionIO]
@@ -21,5 +23,5 @@ trait MysqlConnection {
   )
 
   val y = xa.yolo
-  import y._
+
 }
