@@ -13,7 +13,7 @@ import com.doobie.connection.MysqlConnection
 
 trait EmployeeDAO extends //AbstractDAO[Employee] with
                           MysqlConnection {
-  import y._
+//  import y._
 
   def insertOne(employee: Employee): doobie.Update0 ={
     sql"""
