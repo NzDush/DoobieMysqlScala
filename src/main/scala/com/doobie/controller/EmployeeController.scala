@@ -50,12 +50,12 @@ object EmployeeController extends EmployeeDAO with
     val result = sortBySalary.quick.unsafeRunSync
   }
 
-    def sortEmployeeNamesBySalaryWithMapping: Unit ={
-      val result = sortBySalaryWithMapping.unsafeRunSync.foreach{
-        employee => {
-          println(employee.name)
-        }
+  def sortEmployeeNamesBySalaryWithMapping: Unit ={
+    val result = sortBySalaryWithMapping.unsafeRunSync.foreach{
+      employee => {
+        println(employee.name)
       }
     }
+  }
 
 }
